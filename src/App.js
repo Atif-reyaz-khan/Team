@@ -1,24 +1,83 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Card from "./components/Card";
+import Data from "./Data.jsx";
+import Data2 from "./Data2.jsx";
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import reactDom from "react-dom";
 
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
+
+
+
+function ncards(val){
+  return(
+    <Card
+    image={val.image}
+    description={val.description}
+    job_pos={val.job_pos}
+    dept={val.dept}
+    />
+     
+
+  );
+ 
+}
 function App() {
+  const recipeAuthor = "Efecan";
+  const classes = useStyles();
+
   return (
+  <div className="main">
+    
+    <h4 className="heading1"> Faculty In-charge  </h4>
+    
+  <Grid container  spacing={3} justifyContent="center" alignItems="center">
+    <Grid item xs={10}>
+      <Paper className={classes.paper}>
+
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      
+        {Data.map(ncards)}
+
       </header>
     </div>
+
+     </Paper>
+    </Grid>
+   </Grid> 
+  
+   <h4 className="heading1">  Student Placement Co-ordinators (B.Tech.)  </h4>
+    
+   <Grid container spacing={3} justifyContent="center">
+    <Grid item xs={10}>
+      <Paper className={classes.paper}>
+
+    <div className="App">
+      <header className="App-header">
+      
+        {Data2.map(ncards)}
+
+      </header>
+    </div>
+
+     </Paper>
+    </Grid>
+   </Grid> 
+
+   </div>
   );
 }
 
